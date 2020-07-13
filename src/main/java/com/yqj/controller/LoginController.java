@@ -45,7 +45,7 @@ public class LoginController {
     public String register(@RequestParam("subjectName") String username,
                            @RequestParam("password") String password,
                            @RequestParam("subjectId") String userId,
-                           Map<String,Object> map,HttpSession session) {
+                           Map<String,Object> map,HttpSession session) throws Exception {
         SysUser sysUser = userService.registerUser(username, password, userId);
         map.put("userInfo",sysUser);
         session.setAttribute("loginUser",username);
