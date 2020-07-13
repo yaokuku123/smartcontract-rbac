@@ -21,8 +21,9 @@ public class MvcConfig {
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
                 registry.addViewController("/").setViewName("login");
-                registry.addViewController("/main.html").setViewName("dashboard");
                 registry.addViewController("/register.html").setViewName("register");
+                registry.addViewController("/list.html").setViewName("list");
+                registry.addViewController("/finduser.html").setViewName("finduser");
             }
 
             @Override

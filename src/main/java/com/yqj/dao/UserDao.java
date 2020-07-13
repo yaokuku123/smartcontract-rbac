@@ -17,4 +17,6 @@ import java.util.List;
 public interface UserDao extends JpaRepository<SysUser,Long>, JpaSpecificationExecutor<SysUser> {
 
     List<SysUser> findByUsernameAndPassword(String username,String password);
+
+    List<SysUser> findByUsername(String username);
 }

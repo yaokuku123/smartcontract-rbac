@@ -5,7 +5,6 @@ import com.yqj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.SessionScope;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -40,15 +39,22 @@ public class LoginController {
         }
     }
 
-    //注册的控制
+    //注册主体的控制
     @PostMapping(value = "/register")
     public String register(@RequestParam("subjectName") String username,
                            @RequestParam("password") String password,
                            @RequestParam("subjectId") String userId,
                            Map<String,Object> map,HttpSession session) throws Exception {
         SysUser sysUser = userService.registerUser(username, password, userId);
+        return "redirect:/";
+    }
+
+    //返回主页，查询用户信息
+    @GetMapping("/findInfo")
+    public String findInfo(Map<String,Object> map,HttpSession session){
+        String loginUser = (String) session.getAttribute("loginUser");
+        SysUser sysUser = userService.findInfo(loginUser);
         map.put("userInfo",sysUser);
-        session.setAttribute("loginUser",username);
         return "dashboard";
     }
 }

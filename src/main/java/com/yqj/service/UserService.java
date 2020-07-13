@@ -49,4 +49,9 @@ public class UserService {
         userDao.save(sysUser);
         return sysUser;
     }
+
+    //根据用户名查询用户
+    public SysUser findInfo(String username){
+        return userDao.findByUsername(username).get(0);
+    }
 }
