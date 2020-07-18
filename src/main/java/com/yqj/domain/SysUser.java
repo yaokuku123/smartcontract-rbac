@@ -2,12 +2,7 @@ package com.yqj.domain;
 
 import javax.persistence.*;
 
-/**
- * Copyright(C),2019-2020,XXX公司
- * FileName: SysUser
- * Author: yaoqijun
- * Date: 2020/7/12 19:24
- */
+
 @Entity
 @Table(name = "sys_user")
 public class SysUser {

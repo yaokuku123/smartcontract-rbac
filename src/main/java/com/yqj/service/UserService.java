@@ -8,12 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Copyright(C),2019-2020,XXX公司
- * FileName: UserService
- * Author: yaoqijun
- * Date: 2020/7/12 20:00
- */
+
 //用于对登录用户进行相关操作
 @Service
 public class UserService {

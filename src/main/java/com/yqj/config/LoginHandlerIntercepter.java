@@ -5,12 +5,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Copyright(C),2019-2020,XXX公司
- * FileName: LoginHandlerIntercepter
- * Author: yaoqijun
- * Date: 2020/7/12 16:45
- */
+
 public class LoginHandlerIntercepter extends HandlerInterceptorAdapter {
 
     @Override

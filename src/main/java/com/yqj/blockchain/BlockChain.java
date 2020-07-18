@@ -1,23 +1,15 @@
 package com.yqj.blockchain;
 
 import com.yqj.domain.SysUser;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.http.HttpService;
 
-import java.io.IOException;
 import java.math.BigInteger;
 
-/**
- * Copyright(C),2019-2020,XXX公司
- * FileName: BlockChainTest
- * Author: yaoqijun
- * Date: 2020/7/13 11:24
- */
+
 @Component
 public class BlockChain {
 

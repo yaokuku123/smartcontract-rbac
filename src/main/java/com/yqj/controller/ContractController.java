@@ -10,12 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
-/**
- * Copyright(C),2019-2020,XXX公司
- * FileName: ContractController
- * Author: yaoqijun
- * Date: 2020/7/12 19:16
- */
+
 @Controller
 @RequestMapping(value = "/contract")
 public class ContractController {

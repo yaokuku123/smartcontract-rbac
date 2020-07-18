@@ -9,12 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
-/**
- * Copyright(C),2019-2020,XXX公司
- * FileName: OperationController
- * Author: yaoqijun
- * Date: 2020/7/12 15:28
- */
+
 //用于对登录和注册进行控制
 @Controller
 @RequestMapping(value = "/user")
