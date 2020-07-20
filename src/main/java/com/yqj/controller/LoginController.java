@@ -26,7 +26,7 @@ public class LoginController {
         SysUser sysUser = userService.checkUser(username, password);
         if (sysUser != null) {
             session.setAttribute("loginUser", username);
-            map.put("userInfo",sysUser);
+            map.put("userInfo", sysUser);
             return "dashboard";
         } else {
             map.put("msg", "用户名密码错误");
@@ -39,17 +39,19 @@ public class LoginController {
     public String register(@RequestParam("subjectName") String username,
                            @RequestParam("password") String password,
                            @RequestParam("subjectId") String userId,
-                           Map<String,Object> map,HttpSession session) throws Exception {
-        SysUser sysUser = userService.registerUser(username, password, userId);
+                           @RequestParam("role") String role,
+                           @RequestParam("money") Long money,
+                           Map<String, Object> map, HttpSession session) throws Exception {
+        SysUser sysUser = userService.registerUser(username, password, userId, role, money);
         return "redirect:/";
     }
 
     //返回主页，查询用户信息
     @GetMapping("/findInfo")
-    public String findInfo(Map<String,Object> map,HttpSession session){
+    public String findInfo(Map<String, Object> map, HttpSession session) {
         String loginUser = (String) session.getAttribute("loginUser");
         SysUser sysUser = userService.findInfo(loginUser);
-        map.put("userInfo",sysUser);
+        map.put("userInfo", sysUser);
         return "dashboard";
     }
 }

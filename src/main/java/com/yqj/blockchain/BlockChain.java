@@ -20,8 +20,9 @@ public class BlockChain {
         //加载钱包账户
         Credentials credentials = WalletUtils.loadCredentials("", "D:\\science_research\\real_project\\基于RBAC的访问控制服务\\smartcontract-rbac\\src\\main\\resources\\keystore\\UTC--2020-07-13T02-55-32.975926212Z--e01c787c4890baf36053959d4e6e08eb71b1318e");
         //部署合约
+        BigInteger bigIntegerMoney = new BigInteger(String.valueOf(sysUser.getMoney()));
         User_sol_User voting = User_sol_User.deploy(web3j,credentials, BigInteger.valueOf(3000000),
-                BigInteger.valueOf(3000000),sysUser.getUsername(),sysUser.getUserId()).send();
+                BigInteger.valueOf(3000000),sysUser.getUsername(),sysUser.getUserId(),sysUser.getRole(),bigIntegerMoney).send();
         //合约地址
         String contractAddress = voting.getContractAddress();
         return contractAddress;
@@ -39,11 +40,16 @@ public class BlockChain {
             User_sol_User contract = User_sol_User.load(address, web3j, credentials, BigInteger.valueOf(3000000), BigInteger.valueOf(3000000));
             String username = contract.getUsername().send();
             String userId = contract.getUserId().send();
+            String role = contract.getRole().send();
+            BigInteger bigIntegerMoney = contract.getMoney().send();
+            Long money = bigIntegerMoney.longValue();
             //构建返回的合约对象
             SysUser sysUser = new SysUser();
             sysUser.setUsername(username);
             sysUser.setUserId(userId);
             sysUser.setWallet(address);
+            sysUser.setRole(role);
+            sysUser.setMoney(money);
             return sysUser;
         } catch (Exception e) {
             e.printStackTrace();

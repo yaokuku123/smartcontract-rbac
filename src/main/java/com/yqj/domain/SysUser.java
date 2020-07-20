@@ -23,6 +23,28 @@ public class SysUser {
     @Column(name = "wallet")
     private String wallet;
 
+    @Column(name = "role")
+    private String role;
+
+    @Column(name = "money")
+    private Long money;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Long getMoney() {
+        return money;
+    }
+
+    public void setMoney(Long money) {
+        this.money = money;
+    }
+
     public Long getId() {
         return id;
     }
@@ -70,6 +92,9 @@ public class SysUser {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", userId='" + userId + '\'' +
+                ", wallet='" + wallet + '\'' +
+                ", role='" + role + '\'' +
+                ", money=" + money +
                 '}';
     }
 }
