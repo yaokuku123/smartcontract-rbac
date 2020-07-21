@@ -24,6 +24,7 @@ public class MvcConfig {
                 registry.addViewController("/register.html").setViewName("register");
                 registry.addViewController("/list.html").setViewName("list");
                 registry.addViewController("/finduser.html").setViewName("finduser");
+                registry.addViewController("/objectResource.html").setViewName("objectResource");
             }
 
             @Override

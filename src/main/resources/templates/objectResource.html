@@ -49,31 +49,33 @@
 				<div th:replace="~{common::sidebar}"></div>
 			</div>
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                    <h2>用户信息</h2>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Username</th>
-                                    <th>UserId</th>
-                                    <th>Role</th>
-                                    <th>Money</th>
-                                    <th>Wallet</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td th:text="${userInfo.id}" th:if="${not #strings.isEmpty(userInfo)}"></td>
-                                    <td th:text="${userInfo.username}" th:if="${not #strings.isEmpty(userInfo)}"></td>
-                                    <td th:text="${userInfo.userId}" th:if="${not #strings.isEmpty(userInfo)}"></td>
-                                    <td th:text="${userInfo.role}" th:if="${not #strings.isEmpty(userInfo)}"></td>
-                                    <td th:text="${userInfo.money}" th:if="${not #strings.isEmpty(userInfo)}"></td>
-                                    <td th:text="${userInfo.wallet}" th:if="${not #strings.isEmpty(userInfo)}"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <h2>资源托管</h2>
+                    <form th:action="@{/contract/objectResource}" method="post">
+                      <div class="form-group">
+                        <label for="subjectAddr">托管人合约地址:</label>
+                        <input type="text" class="form-control" name="subjectAddr" id="subjectAddr" placeholder="托管人合约地址">
+                      </div>
+                      <div class="form-group">
+                        <label for="subjectName">托管人用户名:</label>
+                        <input type="text" class="form-control" name="subjectName" id="subjectName" placeholder="托管人用户名">
+                      </div>
+                      <div class="form-group">
+                        <label for="sourceName">资源名称:</label>
+                        <input type="text" class="form-control" name="sourceName" id="sourceName" placeholder="资源名称">
+                      </div>
+                      <div class="form-group">
+                          <label for="source">资源文本:</label>
+                          <input type="text" class="form-control" name="source" id="source" placeholder="资源文本">
+                      </div>
+                      <div class="form-group">
+                        <label for="role">访问特权:</label>
+                        <select id="role" name="role"  class="form-control">
+                          <option value="free">普通用户-0元</option>
+                          <option value="vip">VIP用户-20元</option>
+                        </select>
+                       </div>
+                       <button id="submitBtn" type="submit" class="btn btn-default">Submit</button>
+                    </form>
                 </main>
 		</div>
 
