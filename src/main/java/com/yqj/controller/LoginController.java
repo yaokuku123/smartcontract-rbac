@@ -36,13 +36,9 @@ public class LoginController {
 
     //注册主体的控制
     @PostMapping(value = "/register")
-    public String register(@RequestParam("subjectName") String username,
-                           @RequestParam("password") String password,
-                           @RequestParam("subjectId") String userId,
-                           @RequestParam("role") String role,
-                           @RequestParam("money") Long money,
-                           Map<String, Object> map, HttpSession session) throws Exception {
-        SysUser sysUser = userService.registerUser(username, password, userId, role, money);
+    public String register(SysUser sysUser,Map<String, Object> map,
+                           HttpSession session) throws Exception {
+        userService.registerUser(sysUser);
         return "redirect:/";
     }
 

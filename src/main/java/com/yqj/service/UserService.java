@@ -31,20 +31,12 @@ public class UserService {
     }
 
     //注册用户，在该方法中需要首先调用solidity将用户注册上链，之后将用户信息保存到数据库中
-    public SysUser registerUser(String username,String password,String userId,String role,Long money) throws Exception {
-        //构建用户
-        SysUser sysUser = new SysUser();
-        sysUser.setUsername(username);
-        sysUser.setPassword(password);
-        sysUser.setUserId(userId);
-        sysUser.setRole(role);
-        sysUser.setMoney(money);
+    public void registerUser(SysUser sysUser) throws Exception {
         //调用solidity将用户注册上链，并返回用户合约地址
         String registerContract = blockChain.registerContract(sysUser);
         sysUser.setWallet(registerContract);
         //保存到数据库
         userDao.save(sysUser);
-        return sysUser;
     }
 
     //根据用户名查询用户
