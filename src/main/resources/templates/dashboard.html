@@ -74,6 +74,32 @@
                             </tbody>
                         </table>
                     </div>
+                    <hr>
+                    <h2>当前平台托管资源信息</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>subjectAddr</th>
+                                    <th>subjectName</th>
+                                    <th>resourceName</th>
+                                    <th>role</th>
+                                    <th>resourceAddr</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="resource:${resourceInfo}" th:if="${not #strings.isEmpty(resourceInfo)}">
+                                    <td th:text="${resource.id}"></td>
+                                    <td th:text="${resource.subjectAddr}"></td>
+                                    <td th:text="${resource.subjectName}"></td>
+                                    <td th:text="${resource.sourceName}"></td>
+                                    <td th:text="${resource.role}"></td>
+                                    <td th:text="${resource.sourceAddr}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </main>
 		</div>
 

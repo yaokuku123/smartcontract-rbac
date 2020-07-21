@@ -7,6 +7,9 @@ import com.yqj.domain.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
+
 
 @Service
 public class ContractService {
@@ -30,5 +33,11 @@ public class ContractService {
         sysResource.setSourceAddr(sourceAddr);
         //存储资源数据到数据库
         resourceDao.save(sysResource);
+    }
+
+    //查询全部托管的资源信息
+    public List<SysResource> finaAllResource(){
+        List<SysResource> sysResources = resourceDao.findAll();
+        return sysResources;
     }
 }
