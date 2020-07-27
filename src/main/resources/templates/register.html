@@ -49,8 +49,8 @@
                         confirm("您确定花费0元成为普通用户吗?");
                         money.value = 0;
                     }else if (roleSelect.value == "vip"){
-                        confirm("您确定花费20元成为VIP用户吗?");
-                        money.value = 20;
+                        confirm("您确定花费100元成为VIP用户吗?");
+                        money.value = 100;
                     }
 		        };
 		    };
@@ -83,7 +83,7 @@
                         <label for="roleSelect">用户等级:</label>
                         <select id="roleSelect" name="role"  class="form-control">
                           <option value="free">普通用户-0元</option>
-                          <option value="vip">VIP用户-20元</option>
+                          <option value="vip">VIP用户-100元</option>
                         </select>
                     </div>
                     <input id="money" type="hidden" name="money" value="0" />

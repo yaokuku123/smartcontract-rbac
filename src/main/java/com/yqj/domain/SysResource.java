@@ -1,7 +1,7 @@
 package com.yqj.domain;
 
 import javax.persistence.*;
-
+//用于描述客体托管信息
 @Entity
 @Table(name = "sys_resource")
 public class SysResource {
@@ -17,10 +17,10 @@ public class SysResource {
     private String sourceName;
     @Column(name = "source")
     private String source;
-    @Column(name = "role")
-    private String role;
     @Column(name = "sourceaddr")
     private String sourceAddr;
+    @Column(name = "controlAddr")
+    private String controlAddr;
 
     public Long getId() {
         return id;
@@ -62,13 +62,6 @@ public class SysResource {
         this.source = source;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public String getSourceAddr() {
         return sourceAddr;
@@ -76,6 +69,14 @@ public class SysResource {
 
     public void setSourceAddr(String sourceAddr) {
         this.sourceAddr = sourceAddr;
+    }
+
+    public String getControlAddr() {
+        return controlAddr;
+    }
+
+    public void setControlAddr(String controlAddr) {
+        this.controlAddr = controlAddr;
     }
 
     @Override
@@ -86,8 +87,8 @@ public class SysResource {
                 ", subjectName='" + subjectName + '\'' +
                 ", sourceName='" + sourceName + '\'' +
                 ", source='" + source + '\'' +
-                ", role='" + role + '\'' +
                 ", sourceAddr='" + sourceAddr + '\'' +
+                ", controlAddr='" + controlAddr + '\'' +
                 '}';
     }
 }

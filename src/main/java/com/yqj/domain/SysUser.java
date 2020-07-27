@@ -2,7 +2,7 @@ package com.yqj.domain;
 
 import javax.persistence.*;
 
-
+//用于描述主体注册信息
 @Entity
 @Table(name = "sys_user")
 public class SysUser {

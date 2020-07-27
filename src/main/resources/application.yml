@@ -7,7 +7,11 @@ spring:
     url: jdbc:mysql:///smartcontract_rbac
     username: root
     password: 199748
+  thymeleaf:
+    cache: false
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+

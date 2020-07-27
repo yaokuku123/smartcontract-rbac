@@ -1,5 +1,6 @@
 package com.yqj.controller;
 
+import com.yqj.domain.SysControl;
 import com.yqj.domain.SysResource;
 import com.yqj.domain.SysUser;
 import com.yqj.service.ContractService;
@@ -29,8 +30,9 @@ public class ContractController {
 
     //客体托管资源
     @PostMapping("/objectResource")
-    public String objectResource(SysResource sysResource,Map<String,Object> map) throws Exception {
-        contractService.objectResource(sysResource);
+    public String objectResource(SysResource sysResource, SysControl sysControl,
+                                 Map<String, Object> map) throws Exception {
+        contractService.objectResource(sysControl,sysResource);
         return "redirect:/user/findInfo";
     }
 

@@ -44,6 +44,7 @@ public class LoginController {
     @PostMapping(value = "/register")
     public String register(SysUser sysUser,Map<String, Object> map,
                            HttpSession session) throws Exception {
+        
         userService.registerUser(sysUser);
         return "redirect:/";
     }

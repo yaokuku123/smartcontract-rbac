@@ -1,5 +1,6 @@
 package com.yqj.blockchain;
 
+import com.yqj.domain.SysControl;
 import com.yqj.domain.SysResource;
 import com.yqj.domain.SysUser;
 import org.springframework.stereotype.Component;
@@ -68,7 +69,24 @@ public class BlockChain {
         Credentials credentials = WalletUtils.loadCredentials("", "D:\\science_research\\real_project\\基于RBAC的访问控制服务\\smartcontract-rbac\\src\\main\\resources\\keystore\\UTC--2020-07-13T02-55-32.975926212Z--e01c787c4890baf36053959d4e6e08eb71b1318e");
         //部署合约
         Resource_sol_Resource contract = Resource_sol_Resource.deploy(web3j,credentials, BigInteger.valueOf(3000000),
-                BigInteger.valueOf(3000000),sysResource.getSubjectAddr(),sysResource.getSourceName(),sysResource.getSourceName(),sysResource.getRole()).send();
+                BigInteger.valueOf(3000000),sysResource.getSubjectAddr(),sysResource.getSourceName(),sysResource.getSourceName(),sysResource.getControlAddr()).send();
+        //合约地址
+        String contractAddress = contract.getContractAddress();
+        return contractAddress;
+    }
+
+    //部署访问策略
+    public String registerControlContract(SysControl sysControl) throws Exception {
+        //建立私链连接
+        Web3j web3j = Web3j.build(new HttpService("http://192.168.44.133:8989"));
+        //加载钱包账户
+        Credentials credentials = WalletUtils.loadCredentials("", "D:\\science_research\\real_project\\基于RBAC的访问控制服务\\smartcontract-rbac\\src\\main\\resources\\keystore\\UTC--2020-07-13T02-55-32.975926212Z--e01c787c4890baf36053959d4e6e08eb71b1318e");
+        //部署合约
+        BigInteger bigIntegerPrice = new BigInteger(String.valueOf(sysControl.getPrice()));
+        //将年转换为毫秒
+        BigInteger bigIntegerTime= new BigInteger(String.valueOf(31536000000l*sysControl.getTransTime()));
+        Control_sol_Control contract = Control_sol_Control.deploy(web3j,credentials, BigInteger.valueOf(3000000),
+                BigInteger.valueOf(3000000),sysControl.getRole(),bigIntegerTime,bigIntegerPrice).send();
         //合约地址
         String contractAddress = contract.getContractAddress();
         return contractAddress;
