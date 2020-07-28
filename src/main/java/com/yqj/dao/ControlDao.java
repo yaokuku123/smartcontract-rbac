@@ -12,4 +12,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * Date: 2020/7/27 19:25
  */
 public interface ControlDao extends JpaRepository<SysControl,Long>, JpaSpecificationExecutor<SysControl> {
+    SysControl findByControlAddr(String controlAddr);
 }

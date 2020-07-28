@@ -54,4 +54,13 @@ public class ContractService {
         return sysResources;
     }
 
+    //按照id查询托管资源
+    public SysResource findResourceById(Long id) {
+         return resourceDao.getOne(id);
+    }
+
+    //按照控制合约地址查询
+    public SysControl findControlByAddr(String controlAddr) {
+        return controlDao.findByControlAddr(controlAddr);
+    }
 }
