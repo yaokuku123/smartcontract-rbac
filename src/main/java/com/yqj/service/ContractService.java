@@ -37,6 +37,8 @@ public class ContractService {
         String controlAddr = blockChain.registerControlContract(sysControl);
         sysControl.setControlAddr(controlAddr);
         sysResource.setControlAddr(controlAddr);
+        //根据策略合约的地址查找对应策略的起始和终止时间
+        sysControl = blockChain.loadControlContractTime(sysControl,controlAddr);
         //客体资源托管至链上合约
         String sourceAddr = blockChain.registerObjectResource(sysResource);
         sysResource.setSourceAddr(sourceAddr);

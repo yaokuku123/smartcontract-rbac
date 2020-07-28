@@ -1,6 +1,7 @@
 package com.yqj.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Copyright(C),2019-2020,XXX公司
@@ -24,6 +25,10 @@ public class SysControl {
     private Long price;
     @Column(name = "controlAddr")
     private String controlAddr;
+    @Column(name = "startTime")
+    private String startTime;
+    @Column(name = "stopTime")
+    private String stopTime;
 
     public long getId() {
         return id;
@@ -65,6 +70,22 @@ public class SysControl {
         this.controlAddr = controlAddr;
     }
 
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getStopTime() {
+        return stopTime;
+    }
+
+    public void setStopTime(String stopTime) {
+        this.stopTime = stopTime;
+    }
+
     @Override
     public String toString() {
         return "SysControl{" +
@@ -73,6 +94,8 @@ public class SysControl {
                 ", role='" + role + '\'' +
                 ", price=" + price +
                 ", controlAddr='" + controlAddr + '\'' +
+                ", startTime=" + startTime +
+                ", stopTime=" + stopTime +
                 '}';
     }
 }
