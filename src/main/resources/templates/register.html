@@ -53,10 +53,15 @@
 		        var money = document.getElementById("money");
 		        submitBtn.onclick = function() {
                     if(roleSelect.value == "free"){
-                        confirm("您确定花费0元成为普通用户吗?");
+                        if(confirm("您确定花费0元成为普通用户吗?")){
+                            this.submit();
+                        }
                     }else if (roleSelect.value == "vip"){
-                        confirm("您确定花费100元成为VIP用户吗?");
+                        if(confirm("您确定花费100元成为VIP用户吗?")){
+                            this.submit();
+                        }
                     }
+                    return false;
 		        };
 		    };
         </script>
