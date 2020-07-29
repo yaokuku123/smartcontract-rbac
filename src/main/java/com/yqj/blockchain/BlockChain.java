@@ -113,4 +113,45 @@ public class BlockChain {
         sysControl.setStopTime(sdf.format(new Date(stopTime*1000)));
         return sysControl;
     }
+
+    //从链上获取访问控制的要求
+    public SysControl getControl(String controlAddr) throws Exception {
+        //建立私链连接
+        Web3j web3j = Web3j.build(new HttpService("http://192.168.44.133:8989"));
+        //加载钱包账户
+        Credentials credentials = null;
+        credentials = WalletUtils.loadCredentials("", "D:\\science_research\\real_project\\基于RBAC的访问控制服务\\smartcontract-rbac\\src\\main\\resources\\keystore\\UTC--2020-07-13T02-55-32.975926212Z--e01c787c4890baf36053959d4e6e08eb71b1318e");
+        //加载合约
+        Control_sol_Control contract = Control_sol_Control.load(controlAddr, web3j, credentials, BigInteger.valueOf(3000000), BigInteger.valueOf(3000000));
+        //获取链上数据
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Long stopTime = contract.stopTime().send().longValue();
+        String role = contract.role().send();
+        Long price = contract.price().send().longValue();
+        //封装访问控制要求
+        SysControl sysControl = new SysControl();
+        sysControl.setStopTime(sdf.format(new Date(stopTime*1000)));
+        sysControl.setRole(role);
+        sysControl.setPrice(price);
+        return sysControl;
+    }
+
+    //从链上获取请求主体的信息
+    public SysUser getSubject(String requestSubjectAddr) throws Exception {
+        //建立私链连接
+        Web3j web3j = Web3j.build(new HttpService("http://192.168.44.133:8989"));
+        //加载钱包账户
+        Credentials credentials = null;
+        credentials = WalletUtils.loadCredentials("", "D:\\science_research\\real_project\\基于RBAC的访问控制服务\\smartcontract-rbac\\src\\main\\resources\\keystore\\UTC--2020-07-13T02-55-32.975926212Z--e01c787c4890baf36053959d4e6e08eb71b1318e");
+        //加载合约
+        User_sol_User contract = User_sol_User.load(requestSubjectAddr, web3j, credentials, BigInteger.valueOf(3000000), BigInteger.valueOf(3000000));
+        //获取链上数据
+        Long money = contract.getMoney().send().longValue();
+        String role = contract.getRole().send();
+        //封装数据
+        SysUser sysUser = new SysUser();
+        sysUser.setMoney(money);
+        sysUser.setRole(role);
+        return sysUser;
+    }
 }

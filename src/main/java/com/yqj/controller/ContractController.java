@@ -61,9 +61,11 @@ public class ContractController {
 
     //主体请求访问客体资源
     @PostMapping("/sendRequestResource")
-    public String sendRequestResource(SysRequest sysRequest){
-        System.out.println(sysRequest);
-        return "redirect:/user/findInfo";
+    public String sendRequestResource(SysRequest sysRequest) throws Exception {
+        if (contractService.judgeRequest(sysRequest)){
+            return "success";
+        }
+        return "fail";
     }
 
 }

@@ -4,12 +4,15 @@ import com.yqj.blockchain.BlockChain;
 import com.yqj.dao.ControlDao;
 import com.yqj.dao.ResourceDao;
 import com.yqj.domain.SysControl;
+import com.yqj.domain.SysRequest;
 import com.yqj.domain.SysResource;
 import com.yqj.domain.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 
@@ -62,5 +65,32 @@ public class ContractService {
     //按照控制合约地址查询
     public SysControl findControlByAddr(String controlAddr) {
         return controlDao.findByControlAddr(controlAddr);
+    }
+
+    //从链上获取访问权限信息，并判断是否符合请求资源的要求
+    public boolean judgeRequest(SysRequest sysRequest) throws Exception {
+        //从链上获取访问控制的要求
+        SysControl chainControl = blockChain.getControl(sysRequest.getControlAddr());
+        //从链上获取请求主体的信息
+        SysUser chainSubject = blockChain.getSubject(sysRequest.getRequestSubjectAddr());
+        //判断是否可以访问资源
+        boolean judgeRole = false;
+        if (chainControl.getRole() == chainSubject.getRole()){
+            judgeRole = true;
+        }else if ("vip".equals(chainSubject.getRole())){
+            judgeRole = true;
+        }
+        boolean judgePrice = chainControl.getPrice() <= chainSubject.getMoney();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long controlTime = sdf.parse(chainControl.getStopTime()).getTime();
+        long nowTime = System.currentTimeMillis();
+        boolean judgeTime =nowTime <= controlTime;
+
+        if (judgePrice && judgeRole && judgeTime){
+            return true;
+        }else {
+            return false;
+        }
+
     }
 }
